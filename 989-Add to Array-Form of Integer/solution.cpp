@@ -2,6 +2,7 @@
 #include <string>
 #include <limits>
 #include <iostream>
+#include <stdexcept>
 
 class Solution {
 public:
@@ -33,11 +34,20 @@ public:
 
 
 int main(){
-    std::vector<int> vec {9,9,9,9,9,9,9,9,9,9};
+    std::vector<int> vec {9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9};
     Solution solution;
-    std::vector<int> res = solution.addToArrayForm(vec,1);
-    for(auto const & it : res){
-        std::cout << it << std::endl;
+    try{
+        std::vector<int> res = solution.addToArrayForm(vec,1);
+        for(auto const & it : res){
+            std::cout << it << std::endl;
+        }
     }
+    catch (const std::out_of_range& ex) {
+        std::cerr << "Error: " << ex.what() << std::endl;
+    }
+    catch (...) {
+        std::cerr << "Unknown error occurred." << std::endl;
+    }
+
     return 0;
 }
