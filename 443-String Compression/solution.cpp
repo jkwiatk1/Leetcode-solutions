@@ -1,31 +1,33 @@
 #include <iostream>
 #include <vector>
+#include <string>
 
 class Solution {
 public:
     int compress(std::vector<char>& chars) {
-        bool i = 0;
-        int j = 0;
-        char element_before = '0';
-        int elementAmount = 0;
-        std::vector<char> charscompress;
-        for(auto element : chars) {
-            if(element_before != element){
-                charscompress.push_back(element);
-                elementAmount = 49;
-                i = 0;
-                j += 1;
-            }
-            if(element_before == element){
-                elementAmount += 1;
-                if(i == 0)
-                    charscompress.push_back(elementAmount);
-                else charscompress[j] = elementAmount;
-                i = 1;
-            }
-            element_before = element;
+        int n = chars.size();
+        int count;
+        std::string countStr;
+        if (n == 1) {
+            return 1;
         }
-        return charscompress.size();
+        
+        int writeIdx = 0, anchorIdx = 0;
+        for (int readIdx = 0; readIdx < n; readIdx++) {
+            if (readIdx == n - 1 || chars[readIdx] != chars[readIdx + 1]) {
+                chars[writeIdx++] = chars[anchorIdx];
+                if (readIdx > anchorIdx) {
+                    count = readIdx - anchorIdx + 1;
+                    countStr = std::to_string(count);
+                    for (char c : countStr) {
+                        chars[writeIdx++] = c;
+                    }
+                }
+                anchorIdx = readIdx + 1;
+            }
+        }
+        
+        return writeIdx;
     }
 };
 
