@@ -24,7 +24,7 @@ public:
 int main(){
     Solution solution;
     vector<int> nums = {2, 7, 11, 15};
-    int target = 9;
+    int target = 17;
     
     vector<int> result = solution.twoSum(nums, target);
     cout << "Indices: " << result[0] << " " << result[1] << endl;
