@@ -1,15 +1,12 @@
 #include <iostream>
 #include <vector>
-#include <set>
+#include <unordered_set>
 using namespace std;
 
 class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
-        std::set<int> uniqueNumbers;
-        for (int num : nums) {
-            uniqueNumbers.insert(num);
-        }
+        unordered_set<int> uniqueNumbers(nums.begin(), nums.end());
         if(uniqueNumbers.size() != nums.size())
             return true;
         else
