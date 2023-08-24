@@ -9,34 +9,30 @@ using namespace std;
 class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) {
-        vector<int> answer;
-        queue<vector<int>> vectorQueue;
         int vec_size = nums.size();
-        int j = 0;
+        std::vector<int> prefProd(vec_size, 1);
+        std::vector<int> sufProd(vec_size, 1);
+        std::vector<int> answer(vec_size);
 
-        for(int i = 0; i < vec_size; i++){
-            vectorQueue.push(nums);
-        }
-        
-        
+        int product = 1;
 
-        while (!vectorQueue.empty()) {
-            std::vector<int> currentVector = vectorQueue.front();
-            vectorQueue.pop();
-            int z = 0;
-            int sum = 1;
-            for (const int& num : currentVector) {
-                if(z != j)
-                    sum *= num;
-                z++;
-            }
-            answer.push_back(sum);
-            j++;
+        for(int i = 0; i < vec_size;i++){
+            prefProd[i] = product;
+            product *= nums[i];
         }
 
+        product = 1;
+        for(int i = vec_size-1; i >= 0;i--){
+            sufProd[i] = product;
+            product *= nums[i];
+        }
+
+        for(int i = 0; i < vec_size;i++){
+            answer[i] = prefProd[i] * sufProd[i];
+        }
 
 
-        return answer; 
+        return answer;
     }
 };
 
