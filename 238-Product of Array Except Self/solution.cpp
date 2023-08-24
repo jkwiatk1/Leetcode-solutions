@@ -10,9 +10,9 @@ class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) {
         int vec_size = nums.size();
-        std::vector<int> prefProd(vec_size, 1);
-        std::vector<int> sufProd(vec_size, 1);
-        std::vector<int> answer(vec_size);
+        vector<int> prefProd(vec_size, 1);
+        vector<int> sufProd(vec_size, 1);
+        vector<int> answer(vec_size);
 
         int product = 1;
 
