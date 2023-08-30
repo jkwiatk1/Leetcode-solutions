@@ -35,7 +35,7 @@ public:
         if (topNode != nullptr) {
             return topNode->value;
         } else {
-            std::cerr << "Stack is empty." << endl;
+            cerr << "Stack is empty." << endl;
             return -1;
         }
     }
@@ -44,7 +44,7 @@ public:
         if (topNode != nullptr) {
             return topNode->minSoFar;
         } else {
-            std::cerr << "Stack is empty." << endl;
+            cerr << "Stack is empty." << endl;
             return numeric_limits<int>::max(); 
         }
     }
