@@ -24,10 +24,6 @@ public:
             }
 
             pairStack.push(make_pair(top_index,heights[i]));
-        
-            if(heights[i] > pairStack.top().second){
-                pairStack.push(make_pair(i,heights[i]));
-            }
         }
 
         while(!pairStack.empty()) {
