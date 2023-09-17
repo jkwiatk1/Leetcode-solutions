@@ -4,15 +4,20 @@
 
 using namespace std;
 
-class SolutionBrutal{
+class Solution{
 public:
-    int maxArea(vector<int>& height) {
-        int area = 0;
+    int maxArea(vector<int>& height){
+        int left = 0;
+        int right = height.size() - 1;
         int max_area = 0;
-        for(int l = 0; l < height.size();l++){
-            for(int r = l; r < height.size();r++){
-                area = (r-l)*min(height[l],height[r]);
-                if(area > max_area) max_area = area;
+
+        while (left < right) {
+            int area =(right - left)*min(height[left], height[right]);
+            if (area > max_area) max_area = area;
+            if (height[left] <  height[right]) {
+                left++;
+            } else {
+                right--;
             }
         }
         return max_area;
@@ -22,9 +27,9 @@ public:
 
 int main()
 {
-    SolutionBrutal solution;
+    Solution solution;
     int result;
-    vector<int> numbers = {1,8,6,2,5,4,8,3,7};
+    vector<int> numbers = {1,2,4,3};//{1,8,6,2,5,4,8,3,7};
 
     result = solution.maxArea(numbers);
 
